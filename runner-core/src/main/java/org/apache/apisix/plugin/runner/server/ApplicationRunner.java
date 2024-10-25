@@ -132,6 +132,9 @@ public class ApplicationRunner implements CommandLineRunner {
                         .addAfter("payloadEncoder", "delayedDecoder", new BinaryProtocolDecoder())
                         .addLast("payloadDecoder", new PayloadDecoder())
                         .addAfter("payloadDecoder", "prepareConfHandler", createConfigReqHandler(cache, filterProvider, watcherProvider))
+                        // 将指定的处理器添加到管道的最前面。这意味着新添加的处理器将在接收到的数据流中最先处理数据，适合于需要在数据处理前进行预处理的场景。
+                        // prepareConfHandler: 这个处理器通常用于处理配置请求。它可能负责从缓存中获取配置数据，解析请求，或者更新配置状态。
+                        // hTTPReqCallHandler: 这个处理器负责处理 HTTP 请求。它接收 HTTP 请求并生成相应的响应。
                         .addAfter("prepareConfHandler", "hTTPReqCallHandler", createA6HttpHandler(cache))
                         .addLast("exceptionCaughtHandler", new ExceptionCaughtHandler());
 

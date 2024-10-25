@@ -35,6 +35,7 @@
     <name>APISIX Java Plugin Runner</name>
     <url>https://github.com/apache/apisix-java-plugin-runner</url>
 
+    <!-- 指定项目的源代码管理（Source Code Management, SCM）信息 -->
     <scm>
         <url>https://github.com/apache/apisix-java-plugin-runner</url>
         <connection>scm:git:https://github.com/apache/apisix-java-plugin-runner.git</connection>

@@ -87,17 +87,22 @@ public class RpcCallHandler extends SimpleChannelInboundHandler<A6Request> {
                 return;
             }
 
+            // 我这里发一个http请求会触发一次 RPC_EXTRA_INFO 和 一次RPC_HTTP_REQ_CALL
+            // 这里可能是由 prepareConfHandler 触发
             if (request.getType() == Constants.RPC_EXTRA_INFO) {
+                logger.info("dubuglogtest: current request type: {}", request.getType());
                 assert request instanceof ExtraInfoResponse;
                 handleExtraInfo(ctx, (ExtraInfoResponse) request);
             }
 
             if (request.getType() == Constants.RPC_HTTP_REQ_CALL) {
+                logger.info("dubuglogtest: current request type: {}", request.getType());
                 assert request instanceof HttpRequest;
                 handleHttpReqCall(ctx, (HttpRequest) request);
             }
 
             if (request.getType() == Constants.RPC_HTTP_RESP_CALL) {
+                logger.info("dubuglogtest: current request type: {}", request.getType());
                 assert request instanceof PostRequest;
                 handleHttpRespCall(ctx, (PostRequest) request);
             }

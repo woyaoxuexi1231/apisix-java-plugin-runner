@@ -20,6 +20,8 @@ package org.apache.apisix.plugin.runner;
 import io.github.api7.A6.HTTPRespCall.Req;
 import io.github.api7.A6.TextEntry;
 import org.apache.apisix.plugin.runner.filter.PluginFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 
 import java.nio.ByteBuffer;
@@ -29,6 +31,9 @@ import java.util.Map;
 import java.util.Objects;
 
 public class PostRequest implements A6Request {
+
+    private final Logger logger = LoggerFactory.getLogger(PostRequest.class);
+
     private final Req req;
 
     private Long requestId;
@@ -103,11 +108,17 @@ public class PostRequest implements A6Request {
     }
 
     public String getBody() {
-        return new String(body);
+        if (!Objects.isNull(body)) {
+            return new String(body);
+        }
+        return null;
     }
 
     public String getBody(Charset charset) {
-        return new String(body, charset);
+        if (!Objects.isNull(body)) {
+            return new String(body);
+        }
+        return null;
     }
 
     public String getVars(String key) {

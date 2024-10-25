@@ -22,6 +22,7 @@ import io.github.api7.A6.HTTPReqCall.Resp;
 import io.github.api7.A6.HTTPReqCall.Rewrite;
 import io.github.api7.A6.HTTPReqCall.Stop;
 import io.github.api7.A6.TextEntry;
+import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
@@ -39,6 +40,8 @@ import java.util.Objects;
  * action:Action;
  * }
  */
+
+@ToString
 public class HttpResponse implements A6Response {
     private final Logger logger = LoggerFactory.getLogger(HttpResponse.class);
 
